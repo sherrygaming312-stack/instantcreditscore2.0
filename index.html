@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rubik:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <style>
+
 :root {
   --bg: #f3f7fb;
   --card: #ffffff;
@@ -35,11 +36,25 @@ html, body { height: 100%; font-family: 'Rubik', sans-serif; background: var(--b
 .page.active { display: flex; align-items: center; justify-content: center; }
 
 /* keep page1 bg */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #page1 {
-  background: url('https://emudhra.com/hubfs/Imported_Blog_Media/Z9zIzio7SX3Ys9vlfCnh.webp') no-repeat center center fixed;
+  background: url('https://emudhra.com/hubfs/Imported_Blog_Media/Z9zIzio7SX3Ys9vlfCnh.webp') no-repeat center center;
   background-size: cover;
-  border-radius: 1px;
-  padding: 80px;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Mobile fix */
+@media (max-width: 520px) {
+  #page1 {
+    background-attachment: scroll !important;
+    min-height: 100vh;
+  }
 }
 .card { width: 100%; background: var(--card); border-radius: 14px; padding: 22px; box-shadow: 0 20px 60px rgba(8,24,63,0.08); }
 
@@ -239,7 +254,7 @@ input::placeholder { color: #9aa8c7; }
             <label for="city">City</label>
             <input id="city" type="text" placeholder="City" required autocomplete="address-level2">
           </div>
-          <div style="width:120px">
+          <div style="width:250px">
             <label for="zip">Zip</label>
             <input id="zip" type="text" placeholder="Zip" required autocomplete="postal-code">
           </div>
@@ -815,6 +830,11 @@ input::placeholder { color: #9aa8c7; }
 </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
