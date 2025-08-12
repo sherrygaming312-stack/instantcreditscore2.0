@@ -919,8 +919,20 @@ svg.gauge { width: 820px; max-width: 96vw; height: 420px; z-index: 1; display: b
     setTimeout(()=> svg.style.transform = 'scale(1.01)', 600);
     setTimeout(()=> svg.style.transform = 'scale(1)', 1600);
   });
+  @media (max-width: 768px) {
+  body {
+    zoom: 0.85;
+  }
+}
+@media (max-width: 480px) {
+  body {
+    zoom: 0.75;
+  }
+}
+
 </script>
 
 </body>
 
 </html>
+
