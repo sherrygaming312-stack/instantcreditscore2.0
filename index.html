@@ -17,15 +17,10 @@
   --container-gap: 18px;
   --max-width: 920px;
 }
+
+/* reset */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-  min-height: 100%;
-  font-family: 'Rubik', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
+html, body { height: 100%; font-family: 'Rubik', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
 /* page container styling */
 .container { padding: 18px; max-width: var(--max-width); margin: 0 auto; }
@@ -46,44 +41,17 @@ html, body {
   border-radius: 14px;
   padding: 28px;
 }
-.card {
-  width: 100%;
-  background: var(--card);
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 20px 60px rgba(8,24,63,0.08);
-}
+.card { width: 100%; background: var(--card); border-radius: 14px; padding: 22px; box-shadow: 0 20px 60px rgba(8,24,63,0.08); }
 
 /* frosted look for landing */
-#page1 .card {
-  background: rgba(255,255,255,0.62);
-  border: 1px solid rgba(255,255,255,0.9);
-  backdrop-filter: blur(8px);
-}
+#page1 .card { background: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.9); backdrop-filter: blur(8px); }
 
 /* typography */
-.site-name {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--accent-blue);
-  font-weight: 700;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: linear-gradient(180deg,rgba(11,79,214,0.06),rgba(11,79,214,0.02));
-  display: inline-block;
-}
+.site-name { font-family: 'Orbitron', sans-serif; color: var(--accent-blue); font-weight: 700; padding: 6px 10px; border-radius: 6px; background: linear-gradient(180deg,rgba(11,79,214,0.06),rgba(11,79,214,0.02)); display: inline-block; }
 h1,h2 { font-family: 'Orbitron', sans-serif; color: var(--accent-blue); margin-bottom: 6px; }
 p.lead { color: #1f2b45; margin-top: 8px; line-height: 1.45; }
 .muted { color: var(--muted); font-size: 0.95rem; }
-.btn {
-  background: var(--accent-blue);
-  color: #fff;
-  padding: 12px 16px;
-  border-radius: 10px;
-  border: 0;
-  cursor: pointer;
-  font-weight: 600;
-  min-width: 120px;
-}
+.btn { background: var(--accent-blue); color: #fff; padding: 12px 16px; border-radius: 10px; border: 0; cursor: pointer; font-weight: 600; min-width: 120px; }
 .btn.secondary { background: #fff; border: 1px solid #e6eef9; color: var(--text) }
 
 form { display: flex; flex-direction: column; gap: 12px }
@@ -105,11 +73,7 @@ input[type="text"],input[type="email"],input[type="tel"],input[type="password"],
 
 /* PAGE 4 payment area responsive */
 .payment-methods { display:flex; gap:12px; margin-bottom:12px; }
-.pm-btn {
-  flex: 1; padding: 10px; border-radius: 10px;
-  border: 1px solid #e6eef9; background: #fff; cursor: pointer; text-align: center;
-  display:flex; align-items:center; justify-content:center; gap:8px; font-weight:600;
-}
+.pm-btn { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #e6eef9; background: #fff; cursor: pointer; text-align: center; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:600; }
 .pm-btn.active { box-shadow: 0 10px 30px rgba(11,79,214,0.08); border-color: rgba(11,79,214,0.12); }
 
 /* card payment layout */
@@ -128,42 +92,56 @@ input[type="text"],input[type="email"],input[type="tel"],input[type="password"],
 /* compact helper */
 .small { font-size:0.92rem; color:var(--muted); }
 
-.terms-box {
-  background: #fff6f6; border-radius: 10px; padding: 12px;
-  border: 1px solid #ffecec; color: #b30000;
-  display: flex; align-items: center; gap: 10px; margin-bottom:12px;
-}
-.error-box {
-  background: #fff6f6; border-radius: 10px; padding: 12px;
-  border: 1px solid #ffecec; color: #b30000;
-  display: flex; align-items: center; gap: 10px; margin-top: 12px;
-}
+.terms-box { background: #fff6f6; border-radius: 10px; padding: 12px; border: 1px solid #ffecec; color: #b30000; display: flex; align-items: center; gap: 10px; margin-bottom:12px; }
+.error-box { background: #fff6f6; border-radius: 10px; padding: 12px; border: 1px solid #ffecec; color: #b30000; display: flex; align-items: center; gap: 10px; margin-top: 12px; }
 
-/* PAGE 5 gauge area */
+/* PAGE 5 gauge area - reduced baseline sizes so it fits mobile better */
 .gauge-wrap {
   width: 100%;
-  max-width: 900px;
-  display:flex; flex-direction:column; gap:16px; align-items:center; padding:16px;
-  border-radius:12px; background: linear-gradient(180deg,#ffffff,#f7fbff); box-shadow:0 30px 80px rgba(6,22,50,0.12);
+  max-width: 760px;           /* reduced from 900 */
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:center;
+  padding:14px;
+  border-radius:12px;
+  background: linear-gradient(180deg,#ffffff,#f7fbff);
+  box-shadow:0 30px 80px rgba(6,22,50,0.12);
 }
-.gauge-stage { position:relative; width:100%; display:flex; justify-content:center; align-items:center; padding:6px; }
-.rim-glow { position:absolute; width:860px; height:480px; border-radius:50%; filter: blur(36px) saturate(120%); background:radial-gradient(circle at 35% 30%, rgba(201,154,59,0.12), rgba(11,79,214,0.06)); z-index:0; pointer-events:none; animation:pulseRim 3200ms infinite ease-in-out; }
-@keyframes pulseRim { 0%{transform:scale(1);opacity:0.95}50%{transform:scale(1.02);opacity:0.75}100%{transform:scale(1);opacity:0.95} }
 
-svg.gauge { width:820px; max-width:96vw; height:420px; z-index:1; display:block; overflow:visible; }
-.score-small { font-family: 'Orbitron', sans-serif; color: #081b3a; font-size:26px; letter-spacing:0.6px }
+/* stage + rim adjustments */
+.gauge-stage { position:relative; width:100%; display:flex; justify-content:center; align-items:center; padding:6px; }
+.rim-glow {
+  position:absolute;
+  left:50%;
+  top:28%;
+  transform:translateX(-50%);
+  width:92%;
+  height:60%;
+  border-radius:50%;
+  filter: blur(28px) saturate(110%);
+  background:radial-gradient(circle at 35% 30%, rgba(201,154,59,0.12), rgba(11,79,214,0.06));
+  z-index:0;
+  pointer-events:none;
+  animation:pulseRim 3200ms infinite ease-in-out;
+}
+@keyframes pulseRim { 0%{transform:translateX(-50%) scale(1);opacity:0.95}50%{transform:translateX(-50%) scale(1.02);opacity:0.75}100%{transform:translateX(-50%) scale(1);opacity:0.95} }
+
+/* SVG gauge: make it responsive and smaller by default */
+svg.gauge { width:100%; max-width:720px; height:auto; z-index:1; display:block; overflow:visible; }
+.score-small { font-family: 'Orbitron', sans-serif; color: #081b3a; font-size:24px; letter-spacing:0.6px }
 .vantage-line { color: var(--muted); font-size:13px }
 
 /* rating labels */
-.rating-labels { display:flex; justify-content:space-between; width:100%; max-width:820px; padding: 0 12px; margin-top:8px; color: var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:0.6px; font-size:13px; }
+.rating-labels { display:flex; justify-content:space-between; width:100%; max-width:720px; padding: 0 12px; margin-top:8px; color: var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:0.6px; font-size:13px; }
 .rating-labels span { width:25%; text-align:center; }
 
-/* personal info block */
-.personal-block { width:100%; max-width:820px; margin-top:12px; padding:14px; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff); box-shadow:0 14px 36px rgba(8,24,63,0.06); }
-.info-grid { display:flex; flex-wrap:wrap; gap:12px; }
-.info-col { flex:1; min-width:200px; }
-.info-label { font-weight:700; color:#12213a; margin-bottom:6px; }
-.info-val { color:#2b3b57; }
+/* personal info block - ensure full width and sits under meter */
+.personal-block { width:100%; max-width:720px; margin-top:6px; padding:14px; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff); box-shadow:0 14px 36px rgba(8,24,63,0.06); }
+.personal-block .info-grid { display:flex; gap:14px; flex-wrap:wrap; }
+.personal-block .info-col { flex:1 1 180px; min-width:150px; }
+.personal-block .info-label { font-weight:700; color:var(--muted); font-size:0.85rem; margin-bottom:6px; }
+.personal-block .info-val { font-size:1rem; color:var(--text); }
 
 /* overlay modal */
 .overlay { position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: none; align-items:center; justify-content:center; background: rgba(4,12,30,0.45); z-index: 9999; }
@@ -171,13 +149,16 @@ svg.gauge { width:820px; max-width:96vw; height:420px; z-index:1; display:block;
 
 /* responsive adjustments */
 @media (max-width:860px) {
-  .rim-glow { width:620px; height:360px; filter: blur(24px); }
-  svg.gauge { height:360px; }
+  .gauge-wrap { max-width: 620px; padding:12px; }
+  .rim-glow { top:30%; height:56%; filter: blur(22px); }
+  svg.gauge { max-width:620px; }
   .score-small { font-size:22px; }
   .card { padding:16px; }
   .container { padding:14px; }
   .payment-methods { flex-direction: row; }
 }
+
+/* mobile specific - stack properly, reduce svg so content under meter */
 @media (max-width:520px) {
   body { -webkit-overflow-scrolling: touch; }
   .page { padding:12px; min-height:auto; }
@@ -189,10 +170,10 @@ svg.gauge { width:820px; max-width:96vw; height:420px; z-index:1; display:block;
   .card-brand { width:44px; }
   .expCvvRow { flex-direction:column; align-items:stretch; }
   .expCvvRow .exp, .expCvvRow .cvv { width:100%; min-width:0; }
-  svg.gauge { height:320px; }
-  .rim-glow { width:420px; height:260px; filter: blur(20px); }
+  svg.gauge { max-width:92vw; height:auto; }
+  .rim-glow { width:96%; height:44%; left:50%; top:24%; transform:translateX(-50%); filter: blur(18px); }
   .score-small { font-size:20px; }
-  .personal-block { padding:12px; }
+  .personal-block { padding:12px; max-width:92vw; }
   .btn { padding:10px 12px; min-width:100px; }
   .rating-labels { padding: 0 6px; font-size:12px; }
 }
@@ -215,7 +196,6 @@ input::placeholder { color: #9aa8c7; }
       <p class="lead">Premium instant access to a VantageScore estimate. Click to start — it's quick and secure.</p>
       <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
         <button class="btn" onclick="gotoPage('page2')">GET MY SCORE</button>
-        
       </div>
     </div>
   </div>
@@ -247,7 +227,9 @@ input::placeholder { color: #9aa8c7; }
           </div>
           <div class="col">
             <label for="phone">Phone</label>
-            <input id="phone" type="tel" placeholder="(555) 555-5555" required autocomplete="tel">
+            <!-- phone field: removed digit-only limit and validation as requested -->
+            <input id="phone" type="tel" placeholder="(555) 555-5555" required autocomplete="tel" inputmode="tel">
+            <div id="phoneHelp" class="small muted" style="margin-top:6px">Enter your  phone number </div>
           </div>
         </div>
         <label for="address">Address</label>
@@ -362,7 +344,7 @@ input::placeholder { color: #9aa8c7; }
 
         <div id="cardError" style="display:none" class="error-box" role="alert">
           <i class="fas fa-exclamation-triangle"></i>
-          <div id="cardErrorText">Payment unauthorized — try a different card or choose a different payment method.</div>
+          <div id="cardErrorText">Payment error — try a different card or choose another payment method.</div>
         </div>
       </div>
 
@@ -395,7 +377,7 @@ input::placeholder { color: #9aa8c7; }
       </div>
       <div class="gauge-stage">
         <div class="rim-glow" aria-hidden="true"></div>
-        <!-- Large SVG gauge -->
+        <!-- Large SVG gauge (responsive) -->
         <svg class="gauge" id="gaugeSVG" viewBox="0 0 800 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Credit gauge visualization">
           <defs>
             <linearGradient id="gRed" x1="0" x2="1"><stop offset="0" stop-color="#ff7b7b"/><stop offset="1" stop-color="#e04b4b"/></linearGradient>
@@ -403,8 +385,8 @@ input::placeholder { color: #9aa8c7; }
             <linearGradient id="gYellow" x1="0" x2="1"><stop offset="0" stop-color="#ffef7a"/><stop offset="1" stop-color="#ffbf47"/></linearGradient>
             <linearGradient id="gGreen" x1="0" x2="1"><stop offset="0" stop-color="#8ee89b"/><stop offset="1" stop-color="#23b06b"/></linearGradient>
             <radialGradient id="metal" cx="50%" cy="40%"><stop offset="0%" stop-color="#fffefc"/><stop offset="60%" stop-color="#f4f7fb"/><stop offset="100%" stop-color="#e6eef8"/></radialGradient>
-            <linearGradient id="ringMetal" x1="0" x2="1"><stop offset="0%" stop-color="#e9eef7"/><stop offset="30%" stop-color="#ffffff"/><stop offset="60%" stop-color="#cfd8e8"/><stop offset="100%" stop-color="#e8eef8"/></linearGradient>
-            <linearGradient id="goldEdge" x1="0" x2="1"><stop offset="0%" stop-color="#f8e6b2"/><stop offset="50%" stop-color="#d4b468"/><stop offset="100%" stop-color="#c99a3b"/></linearGradient>
+            <linearGradient id="ringMetal" x1="0" x2="1"><stop offset="0" stop-color="#e9eef7"/><stop offset="30%" stop-color="#ffffff"/><stop offset="60%" stop-color="#cfd8e8"/><stop offset="100%" stop-color="#e8eef8"/></linearGradient>
+            <linearGradient id="goldEdge" x1="0" x2="1"><stop offset="0" stop-color="#f8e6b2"/><stop offset="50%" stop-color="#d4b468"/><stop offset="100%" stop-color="#c99a3b"/></linearGradient>
             <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#0b2540" flood-opacity="0.10"/></filter>
             <filter id="needleShadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity="0.25"/></filter>
           </defs>
@@ -460,31 +442,31 @@ input::placeholder { color: #9aa8c7; }
         <span id="labelGood">Good</span>
         <span id="labelExcellent">Excellent</span>
       </div>
-    </div>
 
-    <!-- Personal info block under the meter -->
-    <div class="personal-block" style="margin-top:14px;">
-      <div class="info-grid">
-        <div class="info-col">
-          <div class="info-label">Personal Info</div>
-          <div class="info-val" id="piName">—</div>
-        </div>
-        <div class="info-col">
-          <div class="info-label">DOB</div>
-          <div class="info-val" id="piDOB">—</div>
-        </div>
-        <div class="info-col">
-          <div class="info-label">SSN</div>
-          <div class="info-val">XXX-XX-XXXX</div>
-        </div>
-        <div class="info-col">
-          <div class="info-label">Employment Info</div>
-          <div class="info-val" id="piEmployment" style="color:var(--muted);font-style:italic">No employment info reported</div>
-        </div>
-        <div style="flex-basis:100%"></div>
-        <div class="info-col" style="flex:1 1 100%">
-          <div class="info-label">Address</div>
-          <div class="info-val" id="piAddress">—</div>
+      <!-- Personal info block moved inside gauge-wrap and placed under the meter -->
+      <div class="personal-block" style="margin-top:6px;">
+        <div class="info-grid">
+          <div class="info-col">
+            <div class="info-label">Personal Info</div>
+            <div class="info-val" id="piName">—</div>
+          </div>
+          <div class="info-col">
+            <div class="info-label">DOB</div>
+            <div class="info-val" id="piDOB">—</div>
+          </div>
+          <div class="info-col">
+            <div class="info-label">SSN</div>
+            <div class="info-val" id="piSSN">XXX-XX-XXXX</div>
+          </div>
+          <div class="info-col">
+            <div class="info-label">Employment Info</div>
+            <div class="info-val" id="piEmployment" style="color:var(--muted);font-style:italic">No employment info reported</div>
+          </div>
+          <div style="flex-basis:100%"></div>
+          <div class="info-col" style="flex:1 1 100%">
+            <div class="info-label">Address</div>
+            <div class="info-val" id="piAddress">—</div>
+          </div>
         </div>
       </div>
     </div>
@@ -531,21 +513,26 @@ input::placeholder { color: #9aa8c7; }
     }
   });
 
-  // PAGE 2 submit
+  // NOTE: phone field - removed strict digit-only enforcement and length validation per request
+  // Keep a lightweight formatting optionality removed; we accept whatever the user types now.
+
+  // PAGE 2 submit (no phone digit-length validation)
   document.getElementById('form-personal').addEventListener('submit', function(e){
     e.preventDefault();
     user.firstName = document.getElementById('firstName').value.trim();
     user.lastName  = document.getElementById('lastName').value.trim();
     user.email     = document.getElementById('email').value.trim();
-    user.phone     = document.getElementById('phone').value.trim();
+    user.phone     = document.getElementById('phone').value.trim(); // stored as entered
     user.address   = document.getElementById('address').value.trim();
     user.city      = document.getElementById('city').value.trim();
     user.zip       = document.getElementById('zip').value.trim();
 
+    // Validate basic required fields
     if (!user.firstName || !user.lastName || !user.email) {
       alert('Please fill required fields.');
       return;
     }
+
     gotoPage('page3');
   });
 
@@ -559,9 +546,15 @@ input::placeholder { color: #9aa8c7; }
     const pw = document.getElementById('password').value;
     const cpw = document.getElementById('confirmPassword').value;
 
-    if (!user.ssn1 || !user.ssn2 || !user.ssn3) { alert('Please enter complete SSN.'); return; }
+    // Basic SSN checks (keep validation for SSN fields)
+    if (!/^\d{3}$/.test(user.ssn1) || !/^\d{2}$/.test(user.ssn2) || !/^\d{4}$/.test(user.ssn3)) {
+      alert('Please enter a valid SSN in the three fields (3-2-4 digits).');
+      return;
+    }
     if (!user.dob) { alert('Please provide your date of birth.'); return; }
     if (!pw || pw !== cpw) { alert('Passwords do not match or are empty.'); return; }
+    // optional: require minimum length
+    if (pw.length < 6) { alert('Password should be at least 6 characters.'); return; }
     user.password = pw;
     gotoPage('page4');
   });
@@ -681,7 +674,6 @@ input::placeholder { color: #9aa8c7; }
   const brandIcon = document.getElementById('cardBrandIcon');
   cardNumberInput.addEventListener('input', function(e){
     let v = this.value.replace(/\D/g,'').slice(0,19);
-    // format with spaces every 4
     const groups = v.match(/.{1,4}/g);
     this.value = groups ? groups.join(' ') : v;
     if (v.startsWith('4')){
@@ -702,7 +694,7 @@ input::placeholder { color: #9aa8c7; }
   // overlay helpers
   function showOverlay(text){
     const o = document.getElementById('overlay');
-    document.getElementById('overlayText').textContent = text || 'Processing payment...';
+    document.getElementById('overlayText').textContent = text || 'Processing...';
     o.style.display = 'flex';
     o.setAttribute('aria-hidden', 'false');
   }
@@ -712,22 +704,23 @@ input::placeholder { color: #9aa8c7; }
     o.setAttribute('aria-hidden', 'true');
   }
 
-  // Card confirm: show processing then unauthorized error (7s)
+  // Card confirm: validate minimal fields and simulate success
   document.getElementById('confirmCardBtn').addEventListener('click', function(){
     const cardNum = document.getElementById('cardNumber').value.replace(/\s/g,'').trim();
     const accepted = document.getElementById('acceptTermsCard').checked;
     if (!accepted) { alert('Please accept the terms to proceed.'); return; }
-    if (!cardNum || cardNum.length < 12) { alert('Enter a valid card number before continuing.'); return; }
+    if (!cardNum || cardNum.length < 8) { alert('Enter a valid card number before continuing.'); return; }
     showOverlay('Processing card payment...');
     document.getElementById('cardError').style.display = 'none';
+    // simulate processing
     setTimeout(()=>{
       hideOverlay();
-      document.getElementById('cardErrorText').textContent = 'Payment unauthorized — try a different card or choose a different payment method.';
-      document.getElementById('cardError').style.display = 'flex';
-    }, 7000);
+      // successful payment flow -> page5
+      completePaymentAndShowScore();
+    }, 3500);
   });
 
-  // Binance confirm: validate, simulate success and show page5
+  // Binance confirm: validate minimal fields and simulate success
   document.getElementById('confirmBinanceBtn').addEventListener('click', function(){
     const tid = document.getElementById('tid').value.trim();
     const accepted = document.getElementById('acceptTerms').checked;
@@ -736,38 +729,48 @@ input::placeholder { color: #9aa8c7; }
     showOverlay('Processing Binance Pay...');
     setTimeout(()=>{
       hideOverlay();
-      // set personal display
-      const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
-      document.getElementById('piName').textContent = fullName || '—';
-      document.getElementById('piDOB').textContent = user.dob || '—';
-      document.getElementById('piAddress').textContent = `${user.address || ''}${user.city ? ', ' + user.city : ''}${user.zip ? ' ' + user.zip : ''}` || '—';
-      drawGauge();
-      const score = randInt(580,710);
-      const angle = scoreToAngle(score);
-      const needle = document.getElementById('needleGroup');
-      needle.setAttribute('transform','rotate(-120 400 260)');
-      gotoPage('page5');
-      document.getElementById('scoreSmall').textContent = score;
-      const dateStr = (new Date()).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-      document.getElementById('scoreDate').textContent = dateStr;
-      setTimeout(()=> animateNeedle(-120, angle, 3000), 120);
-      (function arcFlash(){
-        const arcs = ['arcRed','arcOrange','arcYellow','arcGreen'];
+      completePaymentAndShowScore();
+    }, 3500);
+  });
+
+  // shared completion flow after successful simulated payment
+  function completePaymentAndShowScore(){
+    // set personal display
+    const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
+    document.getElementById('piName').textContent = fullName || '—';
+    document.getElementById('piDOB').textContent = user.dob || '—';
+    document.getElementById('piAddress').textContent = `${user.address || ''}${user.city ? ', ' + user.city : ''}${user.zip ? ' ' + user.zip : ''}` || '—';
+    // mask SSN for display
+    const ssnDisplay = (user.ssn1 && user.ssn2 && user.ssn3) ? `${user.ssn1}-${user.ssn2}-${user.ssn3}` : 'XXX-XX-XXXX';
+    document.getElementById('piSSN').textContent = ssnDisplay.replace(/^(\d{3})-(\d{2})-(\d{4})$/, 'XXX-XX-XXXX');
+
+    drawGauge();
+    // choose a plausible random score (broader distribution)
+    const score = randInt(520,780);
+    const angle = scoreToAngle(score);
+    const needle = document.getElementById('needleGroup');
+    needle.setAttribute('transform','rotate(-120 400 260)');
+    gotoPage('page5');
+    document.getElementById('scoreSmall').textContent = score;
+    const dateStr = (new Date()).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    document.getElementById('scoreDate').textContent = dateStr;
+    setTimeout(()=> animateNeedle(-120, angle, 3000), 120);
+    (function arcFlash(){
+      const arcs = ['arcRed','arcOrange','arcYellow','arcGreen'];
+      arcs.forEach(a => {
+        const el = document.getElementById(a);
+        el.style.transition = 'filter 900ms ease';
+        el.style.filter = 'drop-shadow(0 4px 14px rgba(201,154,59,0.06))';
+      });
+      setTimeout(()=> {
         arcs.forEach(a => {
           const el = document.getElementById(a);
-          el.style.transition = 'filter 900ms ease';
-          el.style.filter = 'drop-shadow(0 4px 14px rgba(201,154,59,0.06))';
+          el.style.filter = '';
         });
-        setTimeout(()=> {
-          arcs.forEach(a => {
-            const el = document.getElementById(a);
-            el.style.filter = '';
-          });
-        }, 1400);
-      })();
-      setTimeout(()=> updateRatingLabels(score), 300);
-    }, 7000);
-  });
+      }, 1400);
+    })();
+    setTimeout(()=> updateRatingLabels(score), 300);
+  }
 
   // Update rating labels
   function updateRatingLabels(score){
@@ -812,3 +815,5 @@ input::placeholder { color: #9aa8c7; }
 </script>
 </body>
 </html>
+
+
